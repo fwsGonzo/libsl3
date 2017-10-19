@@ -47,7 +47,8 @@ namespace sl3
     inline OutT
     losslessConvert1 (InT in)
     {
-      InT converted = std::trunc (in);
+      // we are unfortunately missing trunc() for some reason
+      InT converted = (double) (int64_t) in;
       if (in - converted != 0.0)
         throw ErrTypeMisMatch{"Conversion loses fraction"};
 
